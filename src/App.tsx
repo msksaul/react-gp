@@ -1,18 +1,28 @@
-import { useState } from 'react'
 import './App.css'
-import { Button } from './components'
+import { useFetch } from './hooks'
+
+const url = 'https://api.example.com/data'
+
+interface Data {
+  name: string
+  lastName: string
+  age: number
+}
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  const countMore = () => {
-    setCount((count) => count+1)
+  const { data, error, loading } = useFetch<Data>(url)
+
+  if(loading) {
+    return <div>Loading...</div>
+  }
+
+  if(error) {
+    return <div>Something went wrong</div>
   }
 
   return (
-    <>
-      <Button label={`Count is ${count}`} parentMethod={countMore}/>
-    </>
+    <div>{JSON.stringify(data)}</div>
   )
 }
 
