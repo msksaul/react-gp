@@ -1,5 +1,6 @@
 import './App.css'
 import { Button, ColorRed } from './components'
+import { GlobalProvider } from './context/global.provider'
 
 function App() {
 
@@ -8,9 +9,11 @@ function App() {
   }
 
   return (
-    <Button parentMethod={handleClick}>
-      <ColorRed><div>Label</div></ColorRed>
-    </Button>
+    <GlobalProvider>
+      <Button parentMethod={handleClick}>
+        <ColorRed><div>Label</div></ColorRed>
+      </Button>
+    </GlobalProvider>
   )
 }
 
