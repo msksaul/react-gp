@@ -1,11 +1,21 @@
 import './App.css'
-import { PhoneBook } from './components'
+import { Modal } from './components'
+import { useModalContext } from './components/Modal/context'
 
 function App() {
 
+  const { setState } = useModalContext()
+
+  const openModal = () => {
+    setState(true)
+  }
+
   return (
     <>
-      <PhoneBook />
+      <Modal>
+        <h1>Modal</h1>
+      </Modal>
+      <button onClick={openModal}>Open Modal</button>
     </>
   )
 }
