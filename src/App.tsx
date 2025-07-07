@@ -5,7 +5,7 @@ import { useApi } from './hooks/useApi'
 
 function App() {
 
-  const { loading, error, data, fetch } = useApi<Character>(getCharacter(1), { autoFetch: true })
+  const { loading, error, data, fetch } = useApi<Character, number>(getCharacter, {autoFetch: true , params: 1},)
 
   if(loading) {
     return <div>Loading...</div>
@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       {JSON.stringify(data)}
-      <button onClick={fetch}>Load Data</button>
+      <button onClick={() => fetch(2)}>Load Data</button>
     </>
   )
 }
